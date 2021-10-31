@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course's Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="navbar-brand" href="#">Courses's Portal</div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-primary bg-secondary">
+                    <div class="card-header bg-primary"><b>Add Course</b></div>
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="course-id">Course Id</label>
+                                    <input type="text" id='course-id' class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group">
+                                    <label for="course-name">Course Name</label>
+                                    <input type="text" id='course-name' class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group">
+                                    <label for="department-name">Department Name: </label>
+                                    <label for="radio-btn-ce"><input type="radio" value="CE" id="radio-btn-ce"
+                                            name="department">CE</label>
+                                    <label for="radio-btn-it"><input type="radio" value="IT" id='radio-btn-it'
+                                            name="department">IT</label>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group">
+                                    <label for="institute-name">Institute Name: </label>
+                                    <label for="check-btn-cspit"><input type="checkbox" value="CSPIT"
+                                            id="check-btn-cspit" name="institute-name">CSPIT</label>
+                                    <label for="check-btn-depstar"><input type="checkbox" value="DEPSTAR"
+                                            id='check-btn-depstar' name="institute-name">DEPSTAR</label>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group">
+                                    <label for="university">University: </label>
+                                    <select name="" id="university" class="form-control">
+                                        <option value="CHAROTAR">CHAROTAR</option>
+                                        <option value="DDU">DDU</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary" id='save-btn' recordid="-1">Save</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card card-primary bg-secondary">
+                    <div class="card-header bg-primary"><b>Manage Courses</b></div>
+                    <div class="card-body table-responsive">
+                        <table id="course-table" class="table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Course Id</th>
+                                    <th>Course Name</th>
+                                    <th>Department</th>
+                                    <th>Institute</th>
+                                    <th>University</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer py-3 bg-dark" style="position: absolute; bottom:0px; left: 0px; width: 100%;">
+        <div class="container">
+            <span class="text-muted">Copyrighted by Charusat.</span>
+        </div>
+    </footer>
+</body>
+
+<script>
+
+    $(document).ready(function () {
+        reloadCourseTable();
+    })
+
+    $("#save-btn").on('click', function (e) {
+        e.preventDefault();
+
+        // if(this.prop("course"))
+
+        console.log($("#save-btn").attr("recordid"));
+        let department;
+        if ($("#radio-btn-ce").prop('checked')) {
+            department = $("#radio-btn-ce").val();
+        }
+        else {
+            department = $("#radio-btn-it").val();
+        }
+
+        let temp = [];
+        if ($("#check-btn-cspit").prop("checked")) {
+            console.log("Hello");
+            temp.push("CSPIT");
+        }
+
+        if ($("#check-btn-depstar").prop("checked")) {
+            console.log("LLLLL");
+            temp.push("DEPSTAR");
+        }
+
+        let institute = "";
+
+        for (let i = 0; i < temp.length; i++) {
+            institute += temp[i];
+        }
+
+
+        $.ajax({
+            url: "/api/insert",
+            method: "POST",
+            data: {
+                courseId: $("#course-id").val(),
+                courseName: $("#course-name").val(),
+                department: department,
+                institute: temp,
+                university: $("#university").val()
+            },
+            success: function (res) {
+                alert("Succesfully Saved");
+            },
+            error: function (err) {
+                alert("Something Went Wrong");
+            }
+        });
+    });
+
+
+    function editCourseBtn(id, courseid, coursename, departmentP, instituteP, universityP) {
+
+        e.preventDefault();
+        console.log($("#save-btn").attr("recordid"));
+        let department;
+        if ($("#radio-btn-ce").prop('checked')) {
+            department = $("#radio-btn-ce").val();
+        }
+        else {
+            department = $("#radio-btn-it").val();
+        }
+
+        let temp = [];
+        if ($("#check-btn-cspit").prop("checked")) {
+            console.log("Hello");
+            temp.push("CSPIT");
+        }
+
+        if ($("#check-btn-depstar").prop("checked")) {
+            console.log("LLLLL");
+            temp.push("DEPSTAR");
+        }
+
+        let institute = "";
+
+        for (let i = 0; i < temp.length; i++) {
+            institute += temp[i];
+        }
+
+
+        $.ajax({
+            url: "/api/update",
+            method: "POST",
+            data: {
+                id: id,
+                courseId: $("#course-id").val(),
+                courseName: $("#course-name").val(),
+                department: department,
+                institute: temp,
+                university: $("#university").val()
+            },
+            success: function (res) {
+                alert("Succesfully Saved");
+            },
+            error: function (err) {
+                alert("Something Went Wrong");
+            }
+        });
+    }
+
+    function reloadCourseTable() {
+        $.ajax({
+            url: "/api/show",
+            method: "GET",
+            success: function (res) {
+                let rows = "";
+                for (let i = 0; i < res.data.length; i++) {
+                    rows +=
+                        `<tr>
+                            <td>${res.data[i].courseid}</td>
+                            <td>${res.data[i].coursename}</td>
+                            <td>${res.data[i].department}</td>
+                            <td>${res.data[i].institute}</td>
+                            <td>${res.data[i].university}</td>
+                            <td>
+                                <button class="btn btn-primary" recordid="${res.data[i].id}" onclick="editCourse(${res.data[i].id},${res.data[i].courseid},${res.data[i].coursename},${res.data[i].department},${res.data[i].institute}, ${res.data[i].university})">Edit</button>
+                                <button class="btn btn-danger" recordid="${res.data[i].id}" >Delete</button>
+                            </td>
+                        </tr>`;
+                }
+                //$("#course-table tbody").empty();
+                $("#course-table tbody:last-child").html(rows);
+            },
+            error: function (err) {
+                alert("Something Went Wrong");
+            }
+        })
+    }
+
+</script>
+
+</html>

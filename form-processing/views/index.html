@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body class="bg-secondary">
+    <div class="container">
+
+
+        <div class="card">
+            <div class="card-header bg-primary">Fill The Form</div>
+            <div class="card-body">
+                <form action="./viewdata" method="POST">
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="form-label">Name: </label>
+                        </div>
+                        <div class="col-2">
+                            <input type="text" class="form-control" name="fname" placeholder="First Name">
+                        </div>
+                        <div class="col-2">
+                            <input type="text" class="form-control" name="lname" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Email: </label>
+                        </div>
+                        <div class="col-4">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Mobile No: </label>
+                        </div>
+                        <div class="col-4">
+                            <input type="number" name="mobileno" class="form-control" placeholder="Mobile No">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Date Of Birth: </label>
+                        </div>
+                        <div class="col-4">
+                            <input type="date" name="dob" class="form-control" placeholder="Mobile No">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Gender: </label>
+                        </div>
+                        <div class="col-4">
+                            <label for="male-radio">
+                                <input type="radio" id="male-radio" value="Male" class="" name="gender"
+                                    placeholder="Mobile No">
+                                Male
+                            </label>
+                            <label for="female-radio">
+                                <input type="radio" class="" id="female-radio" value="Female" name="gender"
+                                    placeholder="Mobile No">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Address: </label>
+                        </div>
+                        <div class="col-4">
+                            <textarea name="address" id="" class="form-control" cols="30" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Institute: </label>
+                        </div>
+                        <div class="col-4">
+                            <select name="institute" id="" class="form-select">
+                                <option value="CSPIT">CSPIT</option>
+                                <option value="DEPSTAR">DEPSTAR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Department: </label>
+                        </div>
+                        <div class="col-4">
+                            <select name="department" id="" class="form-select">
+                                <option value="CE">CE</option>
+                                <option value="CSE">CSE</option>
+                                <option value="IT">IT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <label for="form-label">Semester: </label>
+                        </div>
+                        <div class="col-4">
+                            <select name="semester" id="" class="form-select">
+                                <option value="1st Sem">1st Sem</option>
+                                <option value="2nd Sem">2nd Sem</option>
+                                <option value="3rd Sem">3rd Sem</option>
+                                <option value="4th Sem">4th Sem</option>
+                                <option value="5th Sem">5th Sem</option>
+                                <option value="6th Sem">6th Sem</option>
+                                <option value="7th Sem">7th Sem</option>
+                                <option value="8th Sem">8th Sem</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-1">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                        <div class="col-1">
+                            <button class="btn btn-secondary" type="reset">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

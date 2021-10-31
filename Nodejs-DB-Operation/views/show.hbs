@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="justify-content-md-center mt-5">
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <td>Subject Code</td>
+                    <td>Subject Name</td>
+                    <td>Institute Name</td>
+                    <td>Department Name</td>
+                    <td>Semester</td>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each subjects}}
+                <tr>
+                    <td>{{ subjectcode }}</td>
+                    <td>{{ subjectname }}</td>
+                    <td>{{ institutename }}</td>
+                    <td>{{ departmentname }}</td>
+                    <td>{{ semester }}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
